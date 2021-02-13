@@ -1,0 +1,20 @@
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-toolbar color="primary">
+      Users
+    </mat-toolbar>
+    <div role="list" *ngFor="let user of userData">
+      <button (click)="click(user)" mat-button class="toggle" >{{user.name}}</button>
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-toolbar></app-toolbar>
+    <router-outlet></router-outlet>
+    <app-main></app-main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!--<div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>-->
+

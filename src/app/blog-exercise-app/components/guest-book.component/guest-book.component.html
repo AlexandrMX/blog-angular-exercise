@@ -1,0 +1,13 @@
+<!--<mat-list >-->
+<!--  <mat-list-item> Guest book </mat-list-item>-->
+<!--</mat-list>-->
+<div class="header-container" >
+  <header class="header">Guest book</header>
+  <button class="add-guest-btn" mat-raised-button (click)="openDialog()">Add guest</button>
+  <mat-list *ngFor="let guest of guests">
+    <mat-list-item>
+    Guest: {{guest.firstName}}{{guest.lastName}}
+      Comment: {{guest.comment}}
+    </mat-list-item>
+  </mat-list>
+</div>

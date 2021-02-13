@@ -1,0 +1,14 @@
+
+.header {
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  padding: 16px;
+}
+.add-guest-btn {
+  height: 60px;
+  margin: 16px;
+}
+.header-container{
+  /*justify-content: space-around;*/
+  /*display: flex;*/
+  width: 1300px
+}
