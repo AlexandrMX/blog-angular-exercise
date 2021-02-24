@@ -20,6 +20,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MainComponent} from './components/main/main.component';
+import {StoreModule} from "@ngrx/store";
+import {userReducer} from "./components/state/user-reducer";
+import { HttpClientModule } from '@angular/common/http';
+import {USER_STATE} from "./components/state/user.model";
 
 const routes: Routes = [
   {
@@ -41,10 +45,14 @@ const routes: Routes = [
     MainComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
     RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -52,9 +60,7 @@ const routes: Routes = [
     MatListModule,
     MatButtonToggleModule,
     MatDialogModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
+    StoreModule.forFeature(USER_STATE, userReducer)
   ],
   providers: [PostsService]
 })

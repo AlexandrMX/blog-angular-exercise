@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {ImportDestructuringSpacingRule} from 'codelyzer';
+import {Component, OnInit, Input} from '@angular/core';
 import {UserMappedByPosts} from '../../services/posts/posts.model';
 import {Subject} from 'rxjs';
 import {SelectedUserService} from '../../services/selected-user-service/selected-user.service';
+import {Store} from "@ngrx/store";
+import {setSelectedUser} from "../state/user-actions";
 
 
 @Component({
@@ -11,18 +12,21 @@ import {SelectedUserService} from '../../services/selected-user-service/selected
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-   @Input()
-   userData: UserMappedByPosts[];
-   public selectedUser$ = new Subject();
+  @Input()
+  userData: UserMappedByPosts[];
+  public selectedUser$ = new Subject();
 
-  constructor(private selectedUserData: SelectedUserService) { }
+  constructor(
+    private selectedUserData: SelectedUserService,
+    private store: Store<any>
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
   public click(value: UserMappedByPosts): void {
     this.selectedUser$.next(value);
-    this.selectedUserData.setSelectedUser(value);
-    console.log('!!!!!!!!!!', value);
+    this.store.dispatch(setSelectedUser({selectedUser: value}));
   }
 }
