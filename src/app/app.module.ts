@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {RouterModule, Routes} from '@angular/router';
 import {MatListModule} from '@angular/material/list';
+import {EffectsModule} from "@ngrx/effects";
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),

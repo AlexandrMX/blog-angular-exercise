@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Post} from './posts.model';
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,25 +9,13 @@ import {HttpClient} from "@angular/common/http";
 export class PostsService {
 
   constructor(
-    // private http: HttpClient,
+    private http: HttpClient,
   ) {
   }
   private url = 'https://jsonplaceholder.typicode.com/posts';  // URL to web api
 
-  // getAllPost(): Observable<Post[]> {
-  //   return this.http.get<Post[]>(this.url)
-  // }
-
-  public getAllPosts(): Promise<Post[]> {
-    return fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((json) => json);
+  getAllPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.url)
   }
-
-  // public getPostsByUser(id: number): any {
-  //   return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
-  //     .then((response) => response.json())
-  //     .then((json) => console.log(json));
-  // }
 
 }

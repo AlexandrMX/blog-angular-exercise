@@ -1,11 +1,20 @@
+import {PostsData, UserMappedByPosts} from "../../services/posts/posts.model";
 
 export interface UserState {
-  usersData: {
-    userId: any,
-    name: any,
-    data: [],
-  },
-  selectedUser: any
+  usersPosts: UserMappedByPosts[];
+  selectedUser: any;
+  guest: GuestPosts;
+
+}
+export interface GuestPosts {
+  comment: string
+  firstName: string
+  lastName: string
 }
 
-export const USER_STATE = 'UserState'
+
+export interface UserDataMapper {
+  usersData: UserMappedByPosts
+}
+
+export const USER_STATE = 'UserState';

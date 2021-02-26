@@ -13,10 +13,18 @@ import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
-  declarations: [],
-  imports: [
+  exports: [
     CommonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    MatButtonToggleModule,
+    MatDialogModule,
   ]
 })
 export class MaterialModule { }

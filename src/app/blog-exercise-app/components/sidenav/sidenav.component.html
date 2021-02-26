@@ -4,7 +4,7 @@
     <mat-toolbar color="primary">
       Users
     </mat-toolbar>
-    <div role="list" *ngFor="let user of userData">
+    <div role="list" *ngFor="let user of (users$ | async)">
       <button (click)="click(user)" mat-button class="toggle" >{{user.name}}</button>
     </div>
 

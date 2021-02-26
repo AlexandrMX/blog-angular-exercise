@@ -7,23 +7,16 @@ import {MaterialModule} from '../material/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
 import {PostsService} from './services/posts/posts.service';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {GuestBookComponent} from './components/guest-book.component/guest-book.component';
 import {GuestBookFormComponent} from './components/guest-book.component/guest-book-form/guest-book-form.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
 import {MainComponent} from './components/main/main.component';
 import {StoreModule} from "@ngrx/store";
 import {userReducer} from "./components/state/user-reducer";
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {USER_STATE} from "./components/state/user.model";
+import {EffectsModule} from "@ngrx/effects";
+import {UserEffects} from "./components/state/user-effects";
 
 const routes: Routes = [
   {
@@ -42,7 +35,8 @@ const routes: Routes = [
     GuestBookComponent,
     SidenavComponent,
     GuestBookFormComponent,
-    MainComponent],
+    MainComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -51,16 +45,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatListModule,
-    MatButtonToggleModule,
-    MatDialogModule,
-    StoreModule.forFeature(USER_STATE, userReducer)
+    EffectsModule.forFeature([UserEffects]),
+    StoreModule.forFeature(USER_STATE, userReducer),
   ],
   providers: [PostsService]
 })

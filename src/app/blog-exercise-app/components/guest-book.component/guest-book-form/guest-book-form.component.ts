@@ -10,11 +10,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 
 
 export class GuestBookFormComponent implements OnInit {
+  public profileForm: FormGroup;
 
-
-  // @Output() newItemEvent = new EventEmitter<Guest>();
-
-  profileForm: FormGroup;
   constructor(
     private dialogRef: MatDialogRef<GuestBookFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -24,17 +21,12 @@ export class GuestBookFormComponent implements OnInit {
       comment: new FormControl(''),
     });
   }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
   }
 
 
   onSubmit(): void {
-    // TODO: Use EventEmitter with form value
-
-    // this.guest.push(this.profileForm.value);
-    // // this.newItemEvent.emit(this.profileForm.value)
-    // console.log(this.guest, '!!!!!!!!!!!!!!');
     this.dialogRef.close(this.profileForm.value);
   }
 }

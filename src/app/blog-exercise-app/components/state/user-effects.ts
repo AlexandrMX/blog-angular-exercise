@@ -1,47 +1,29 @@
-import {Actions} from "@ngrx/effects";
+import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {PostsService} from "../../services/posts/posts.service";
-import {SelectedUserService} from "../../services/selected-user-service/selected-user.service";
 
-// export class UserEffects {
-//   constructor(
-    // private actions$: Actions,
-    // private postsService: PostsService,
-    // private selectedUserService: SelectedUserService
-  // ) {
-  // }
+import {catchError, map, mergeMap} from "rxjs/operators";
+import {EMPTY} from "rxjs";
+import {Injectable} from "@angular/core";
+import {loadUserDataAction, usersDataLoadedSuccessAction} from "./user-actions";
 
-  // setSelectedUser = createEffect(() => {
-  //   this.actions$.pipe(
-  //     ofType(setSelectedUser),
-  //     switchMap(() =>
-  //       this.selectedUserService.selectedUser
-  //         .pipe(
-  //           map((res) => {
-  //             return selectedUserSett({
-  //               selectedUser: res
-  //             })
-  //
-  //           })
-  //         )))
-  // })
+@Injectable()
+export class UserEffects {
+  constructor(
+    private actions$: Actions,
+    private postsService: PostsService,
+  ) {
+  }
 
-
-  // loadUserData = createEffect(() => {
-  //   this.actions$.pipe(
-  //     ofType(loadUserDataAction),
-  //     switchMap(() => {
-  //       this.postsService.getAllPost()
-  //         .pipe(
-  //           map((res, index) => {
-  //             console.log('%%%%%%%%', res)
-  //             const mappedPosts = mapPostsByUser(res);
-  //             return userDataLoaded({
-  //               usersData: [{
-  //                 userId: mappedPosts[index].userId,
-  //                 name: null,
-  //                 data: []
-  //               }]
-  //             })
-  //           }))
-  //     }))
-  // }
+  loadUserDataEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(loadUserDataAction),
+      mergeMap(() => this.postsService.getAllPosts()
+        .pipe(
+          map(posts => {
+            return usersDataLoadedSuccessAction({userData: posts})
+          }),
+          catchError(() => EMPTY)
+        ))
+    );
+  })
+}

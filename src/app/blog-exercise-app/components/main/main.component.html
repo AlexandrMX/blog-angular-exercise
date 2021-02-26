@@ -1,3 +1,8 @@
-<mat-list *ngFor="let selectedUser of (selectedUserData | async)">
-  <mat-list-item> {{selectedUser.body}} </mat-list-item>
-</mat-list>
+<div class="container">
+  <div *ngIf="(selectedUserData$ | async)?.name" class="username">
+    User: {{(selectedUserData$ | async)?.name}}
+  </div>
+  <mat-list *ngFor="let selectedUser of (selectedUserData$ | async)?.data">
+    <mat-list-item> comment: {{selectedUser.body}} </mat-list-item>
+  </mat-list>
+</div>

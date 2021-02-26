@@ -1,0 +1,9 @@
+.username {
+  font-weight: bold;
+  font-size: 16px;
+  padding: 0 16px;
+  letter-spacing: 1px;
+}
+.container {
+  margin-top: 15px;
+}

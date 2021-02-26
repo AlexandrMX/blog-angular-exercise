@@ -1,4 +1,8 @@
-
+.username {
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
 .header {
   font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
   padding: 16px;

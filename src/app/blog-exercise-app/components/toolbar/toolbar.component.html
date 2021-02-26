@@ -1,7 +1,3 @@
 <mat-toolbar color="primary">
-<!--Posts-->
-  <button class="add-guest-btn" mat-raised-button (click)="toGuestBook()" >Go to guest-book</button>
+  <button class="add-guest-btn" mat-raised-button [routerLink]="'guest-book'" >Go to guest-book</button>
 </mat-toolbar>
-<!--<mat-list *ngFor="let user of (userData$  | async)?.data">-->
-<!--  <mat-list-item>{{user.body}} </mat-list-item>-->
-<!--</mat-list>-->

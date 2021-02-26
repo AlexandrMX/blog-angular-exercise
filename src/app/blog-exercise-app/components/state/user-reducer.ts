@@ -1,27 +1,44 @@
-import {Action, createAction, createReducer, on} from "@ngrx/store";
-import {PostsData, UserMappedByPosts} from "../../services/posts/posts.model";
-import {selectedUserSuccess, setSelectedUser} from "./user-actions";
+import {Action, createReducer, on} from "@ngrx/store";
+import {addGuest, loadUserDataAction, setSelectedUser, usersDataLoadedSuccessAction} from "./user-actions";
 import {UserState} from "./user.model";
+import {mapPostsByUser} from "../../shared/shared-utils";
 
-export const  initialState: UserState = {
-  usersData: {
-    userId: null,
-    name: null,
-    data: [],
-  },
-  selectedUser: null
+export const initialState: UserState = {
+  usersPosts: [],
+  selectedUser: null,
+  guest: null
+
 };
 
 export const reducer = createReducer(
   initialState,
-  on(setSelectedUser, (state, {selectedUser }) => {
+  on(setSelectedUser, (state, {selectedUser}) => {
+    return {
+      ...state,
+      selectedUser,
+    }
+  }),
+  on(loadUserDataAction, (state) => {
+    return {
+      ...state
+    }
+  }),
+  on(usersDataLoadedSuccessAction, (state, {userData}) => {
+      const userDataMapped = mapPostsByUser(userData);
       return {
         ...state,
-        selectedUser: selectedUser,
+        usersPosts: userDataMapped.usersData,
       }
-    }),
-  );
+    }
+  ),
+  on(addGuest, (state, {guest}) => {
+    return {
+      ...state,
+      guest
+    }
+  })
+);
 
-export function userReducer(state:UserState, action: Action) {
+export function userReducer(state: UserState, action: Action) {
   return reducer(state, action);
 }

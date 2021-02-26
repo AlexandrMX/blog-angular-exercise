@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostsService} from './services/posts/posts.service';
-import {Post, UserMappedByPosts} from './services/posts/posts.model';
-import {mapPostsByUser} from './shared/shared-utils';
+import {Store} from "@ngrx/store";
+import {loadUserDataAction} from "./components/state/user-actions";
 
 @Component({
   selector: 'app-blog-exercise-app',
@@ -9,23 +9,14 @@ import {mapPostsByUser} from './shared/shared-utils';
   styleUrls: ['./blog-exercise-app.component.css']
 })
 export class BlogExerciseAppComponent implements OnInit {
-  public posts$: Promise<Post[]>;
-  public users: UserMappedByPosts[];
 
-  constructor(private postsService: PostsService) {
+  constructor(
+    private postsService: PostsService,
+    private store: Store<any>
+  ) {
   }
-
 
   ngOnInit(): void {
-    this.posts$ = this.postsService.getAllPosts();
-    this.posts$.then((posts) => {
-      console.log(posts);
-      const mappedPosts = mapPostsByUser(posts);
-      this.users = mapPostsByUser(posts);
-      console.log('mappedPosts', mappedPosts);
-    });
+    this.store.dispatch(loadUserDataAction());
   }
-
-
-
 }
