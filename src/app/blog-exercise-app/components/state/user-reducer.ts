@@ -6,8 +6,7 @@ import {mapPostsByUser} from "../../shared/shared-utils";
 export const initialState: UserState = {
   usersPosts: [],
   selectedUser: null,
-  guest: []
-
+  guests: []
 };
 
 export const reducer = createReducer(

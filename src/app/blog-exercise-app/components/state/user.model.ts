@@ -3,9 +3,9 @@ import {PostsData, UserMappedByPosts} from "../../services/posts/posts.model";
 export interface UserState {
   usersPosts: UserMappedByPosts[];
   selectedUser: any;
-  guest: GuestPosts[];
-
+  guests: GuestPosts[];
 }
+
 export interface GuestPosts {
   comment: string
   firstName: string
