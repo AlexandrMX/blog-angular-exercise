@@ -8,4 +8,4 @@ export const loadUserDataAction = createAction(LOAD_USER_DATA);
 
 export const setSelectedUser = createAction(SET_SELECTED_USER, props<{ selectedUser: UserMappedByPosts }>());
 
-export const addGuest = createAction(ADD_GUEST, props<{guest: GuestPosts}>());
+export const addGuest = createAction(ADD_GUEST, props<{guest: GuestPosts[]}>());

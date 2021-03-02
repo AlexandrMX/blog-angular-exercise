@@ -5,13 +5,19 @@ const getSelectedUser = ( state: UserState) => {
   return state.selectedUser;
 };
 
-const selectedUserState = createFeatureSelector<UserState>(USER_STATE)
+const userState = createFeatureSelector<UserState>(USER_STATE)
 
-export const selectSelectedUser = createSelector(selectedUserState, getSelectedUser)
+export const selectSelectedUser = createSelector(userState, getSelectedUser)
 
 const getPostsByUser = (state: UserState) => {
   return state.usersPosts;
 };
 
-export const selectPostsByUser = createSelector(selectedUserState, getPostsByUser)
+export const selectPostsByUser = createSelector(userState, getPostsByUser)
 
+
+const getAllGuests = (state) => {
+  return state.guests
+};
+
+export const selectAllGuests = createSelector(userState, getAllGuests);
