@@ -1,16 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { MainComponent } from './main.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {MainComponent} from './main.component';
+import {MockStore, provideMockStore} from "@ngrx/store/testing";
+import {selectedUserState} from "../state/user.mocks";
+import {initialState} from "../state/user-reducer";
+import {selectSelectedUser} from "../state/user.selectors";
+import {UserState} from "../state/user.model";
 
 describe('MainComponent', () => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
+  let store: MockStore<UserState>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainComponent ]
-    })
-    .compileComponents();
+      declarations: [MainComponent],
+      providers: [
+        provideMockStore({initialState}),
+      ]
+    }).compileComponents();
+    store = TestBed.inject(MockStore);
+    store.overrideSelector(selectSelectedUser,{selectedUser: selectedUserState});
   });
 
   beforeEach(() => {
@@ -19,7 +28,7 @@ describe('MainComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create Main component', () => {
     expect(component).toBeTruthy();
   });
 });

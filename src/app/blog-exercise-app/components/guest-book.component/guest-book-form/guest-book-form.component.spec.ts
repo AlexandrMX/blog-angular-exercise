@@ -1,6 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GuestBookFormComponent } from './guest-book-form.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {GuestBookFormComponent} from './guest-book-form.component';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MaterialModule} from "../../../../material/material.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ReactiveFormsModule} from "@angular/forms";
 
 describe('GuestBookFormComponent', () => {
   let component: GuestBookFormComponent;
@@ -8,9 +11,14 @@ describe('GuestBookFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GuestBookFormComponent ]
+      declarations: [GuestBookFormComponent],
+      imports: [MatDialogModule, MaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
+      providers: [
+        {provide: MatDialogRef, useValue: {}},
+        {provide: MAT_DIALOG_DATA, useValue: {}},
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +27,7 @@ describe('GuestBookFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create Guest-book-form component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -8,8 +8,7 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./guest-book-form.component.css']
 })
 
-
-export class GuestBookFormComponent implements OnInit {
+export class GuestBookFormComponent {
   public profileForm: FormGroup;
 
   constructor(
@@ -21,10 +20,6 @@ export class GuestBookFormComponent implements OnInit {
       comment: new FormControl(''),
     });
   }
-
-  ngOnInit(): void {
-  }
-
 
   onSubmit(): void {
     this.dialogRef.close(this.profileForm.value);
